@@ -1,0 +1,15 @@
+artifact_uri: file:///home/malom/code/BaliMalo/TaxiFareModel/mlruns/1/24f3738b4eb94038a3a2e920bfd4164b/artifacts
+end_time: null
+entry_point_name: ''
+experiment_id: '1'
+lifecycle_stage: active
+name: ''
+run_id: 24f3738b4eb94038a3a2e920bfd4164b
+run_uuid: 24f3738b4eb94038a3a2e920bfd4164b
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1629200567320
+status: 1
+tags: []
+user_id: unknown

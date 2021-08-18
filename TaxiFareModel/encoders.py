@@ -57,3 +57,33 @@ class DistanceTransformer(BaseEstimator, TransformerMixin):
             end_lon=self.end_lon
         )
         return X_[['distance']]
+
+class DistanceToCenter(BaseEstimator, TransformerMixin):
+    """
+        Computes the haversine distance between NYC center and pick up location.
+        Returns a copy of the DataFrame X with only one column: 'distance_to_center'.
+    """
+
+    def __init__(self,
+                 start_lat="pickup_latitude",
+                 start_lon="pickup_longitude"):
+        self.start_lat = start_lat
+        self.start_lon = start_lon
+
+    def fit(self, X, y=None):
+        return self
+
+    def transform(self, X, y=None):
+        assert isinstance(X, pd.DataFrame)
+        X_ = X.copy()        
+
+        nyc_center = (40.7141667, -74.0063889)
+        X_["nyc_lat"], X_["nyc_lng"] = nyc_center[0], nyc_center[1]
+        args =  dict(start_lat="nyc_lat", start_lon="nyc_lng",
+             end_lat="pickup_latitude", end_lon="pickup_longitude")
+
+        X_["distance_to_center"] = haversine_vectorized(
+            X_,
+            **args
+        )
+        return X_[['distance_to_center']]
